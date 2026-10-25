@@ -153,6 +153,23 @@
     .contact-box p { color: #d8e8e8; max-width: 600px; margin: 0 auto 24px; }
     .contact-box .btn { background: var(--gold); color: var(--ink); }
 
+
+    /* Resources */
+    .res-group { margin-top: 40px; }
+    .res-group h3 { font-size: 1.35rem; margin-bottom: 14px; color: var(--teal); }
+    .res-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .res {
+      background: var(--white); border: 1px solid var(--sand); border-radius: var(--radius);
+      padding: 20px 22px; border-left: 4px solid var(--gold);
+    }
+    .res h4 { font-family: "Fraunces", serif; font-size: 1.15rem; margin-bottom: 6px; }
+    .res p { color: var(--muted); font-size: 1rem; margin-bottom: 8px; }
+    .res a { font-weight: 600; color: var(--teal); }
+    .res .meta { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: .98rem; }
+    .res-note { margin-top: 30px; font-size: .95rem; color: var(--muted); }
+    .contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+    .contact-box .btn-outline { background: transparent; color: var(--white); border: 2px solid var(--gold); }
+
     /* Footer */
     footer { padding: 40px 0; text-align: center; color: var(--muted); font-size: .95rem; }
     footer .closing { font-family: "Fraunces", serif; font-size: 1.3rem; color: var(--ink); margin-bottom: 12px; }
@@ -174,7 +191,7 @@
       .nav ul a { display: block; padding: 14px 20px; }
       .hero-grid, .about-grid { grid-template-columns: 1fr; }
       .hero-text { padding-bottom: 10px; }
-      .cards, .serve-list { grid-template-columns: 1fr; }
+      .cards, .serve-list, .res-grid { grid-template-columns: 1fr; }
       .contact-box { padding: 32px 20px; }
     }
   </style>
@@ -190,6 +207,7 @@
         <li><a href="#services">Services</a></li>
         <li><a href="#serve">Who We Serve</a></li>
         <li><a href="#hope">Daily Hope</a></li>
+        <li><a href="#resources">Resources</a></li>
         <li><a href="#involved">Get Involved</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -328,6 +346,64 @@
       </div>
     </section>
 
+
+    <!-- RESOURCES -->
+    <section id="resources">
+      <div class="wrap">
+        <p class="eyebrow">Resources</p>
+        <h2>Places that can help in Austin</h2>
+        <p class="lead">Places I personally recommend for the road ahead. Reach out if you need help connecting with any of them.</p>
+
+        <div class="res-group">
+          <h3>Find a church home</h3>
+          <p>It is so important to find a community and get in it. If you don't have a church home yet, these Austin churches have great pastors who help people walk with God, break down barriers, and be a bridge for God.</p>
+          <div class="res-grid" style="margin-top:16px">
+            <!-- TODO: add each church's address, service times, and website once Rodney confirms them -->
+            <div class="res"><h4>Dreamers Church</h4><p>Austin, TX</p></div>
+            <div class="res"><h4>City Reach Church</h4><p>Austin, TX</p></div>
+            <div class="res"><h4>OneChapel Austin</h4><p>Austin, TX</p><div class="meta"><a href="https://www.onechapel.com" target="_blank" rel="noopener">onechapel.com</a></div></div>
+          </div>
+        </div>
+
+        <div class="res-group">
+          <h3>Help and support</h3>
+          <div class="res-grid">
+            <div class="res">
+              <h4>Mental health: 211 or Integral Care</h4>
+              <p>If you are facing mental health struggles, 211 is a great place to start. Integral Care has locations around Austin and a 24/7 helpline.</p>
+              <div class="meta"><a href="tel:211">Call 211</a><a href="tel:5124724357">Integral Care: 512-472-HELP (4357)</a></div>
+            </div>
+            <div class="res">
+              <h4>Medical care: Vivent Health Austin</h4>
+              <p>A nationally recognized medical and social service center specializing in integrated HIV care, prevention, and treatment.</p>
+              <div class="meta"><a href="tel:5124582437">512-458-2437</a><span>104 E Highland Mall Blvd, Ste 100, Austin, TX 78752</span></div>
+            </div>
+            <div class="res">
+              <h4>Housing: Second Chance Locator</h4>
+              <p>Looking for a home with felonies, misdemeanors, bad credit, or a broken lease? They help people get a roof over their head and a place to call home.</p>
+              <div class="meta"><a href="tel:5128654672">512-865-4672</a></div>
+            </div>
+            <div class="res">
+              <h4>Legal help: Texas RioGrande Legal Aid</h4>
+              <p>Facing a legal problem? Call for legal advice or for someone to fight for you.</p>
+              <div class="meta"><a href="tel:5123346526">512-334-6526</a></div>
+            </div>
+            <div class="res">
+              <h4>Free computers: Austin Public Library</h4>
+              <p>If you need to use a computer for anything, you can always go to the public library.</p>
+              <div class="meta"><a href="https://library.austintexas.gov" target="_blank" rel="noopener">library.austintexas.gov</a></div>
+            </div>
+            <div class="res">
+              <h4>Encouragement on the go: K-LOVE Radio</h4>
+              <p>K-LOVE helped me through many challenges in my life. They even have an app so you can take them everywhere you go.</p>
+              <div class="meta"><a href="https://www.klove.com" target="_blank" rel="noopener">klove.com</a></div>
+            </div>
+          </div>
+        </div>
+        <p class="res-note">Phone numbers and hours can change. Call ahead to confirm before you go.</p>
+      </div>
+    </section>
+
     <!-- GET INVOLVED -->
     <section id="involved">
       <div class="wrap">
@@ -357,8 +433,10 @@
         <div class="contact-box">
           <h2>Reach out — you're not alone</h2>
           <p>Whether you need support, want to help, or just need someone to listen, we'd love to hear from you.</p>
-          <!-- TODO: add Rodney's public contact info once he confirms it -->
-          <p><strong>Contact details coming soon.</strong></p>
+          <div class="contact-links">
+            <a href="tel:7372852293" class="btn">Call or text 737-285-2293</a>
+            <a href="mailto:onjourneybutnotalone@gmail.com" class="btn btn-outline">onjourneybutnotalone@gmail.com</a>
+          </div>
         </div>
       </div>
     </section>
