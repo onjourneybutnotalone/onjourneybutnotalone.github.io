@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>On a Journey, But Not Alone</title>
+  <meta name="description" content="On a Journey, But Not Alone walks beside people in difficult seasons with advocacy, peer support, spiritual guidance, and essential items. Austin, Texas." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #fbf7f0;
+      --sand: #f2e9da;
+      --ink: #1f2a33;
+      --muted: #55616b;
+      --teal: #1f5f63;
+      --teal-dark: #164649;
+      --gold: #d9a441;
+      --gold-soft: #f4dfb4;
+      --white: #ffffff;
+      --radius: 14px;
+      --max: 1100px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Source Sans 3", system-ui, sans-serif;
+      font-size: 1.125rem;
+      line-height: 1.65;
+      color: var(--ink);
+      background: var(--cream);
+    }
+    h1, h2, h3 { font-family: "Fraunces", Georgia, serif; line-height: 1.2; font-weight: 600; }
+    a { color: var(--teal); }
+    img, svg { display: block; max-width: 100%; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+    section { padding: 80px 0; scroll-margin-top: 70px; }
+    .eyebrow {
+      font-size: .85rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--teal); font-weight: 600; margin-bottom: 10px;
+    }
+    h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 18px; }
+    .lead { font-size: 1.2rem; color: var(--muted); max-width: 680px; }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(251, 247, 240, .95);
+      border-bottom: 1px solid var(--sand);
+      backdrop-filter: blur(6px);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .brand { font-family: "Fraunces", serif; font-weight: 600; font-size: 1.15rem; color: var(--ink); text-decoration: none; }
+    .brand span { color: var(--teal); }
+    .nav ul { display: flex; gap: 22px; list-style: none; }
+    .nav ul a { text-decoration: none; color: var(--ink); font-weight: 600; font-size: 1rem; }
+    .nav ul a:hover { color: var(--teal); }
+    .menu-btn { display: none; background: none; border: 0; font-size: 1.6rem; cursor: pointer; color: var(--ink); }
+
+    /* Hero */
+    .hero { padding: 60px 0 0; background: linear-gradient(180deg, var(--cream) 0%, var(--gold-soft) 100%); }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: end; }
+    .hero-text { padding-bottom: 70px; }
+    .hero h1 { font-size: clamp(2.3rem, 6vw, 3.6rem); margin-bottom: 18px; }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero p { font-size: 1.25rem; color: var(--muted); margin-bottom: 28px; max-width: 520px; }
+    .btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      display: inline-block; padding: 13px 24px; border-radius: 999px;
+      font-weight: 600; text-decoration: none; font-size: 1rem;
+    }
+    .btn-primary { background: var(--teal); color: var(--white); }
+    .btn-primary:hover { background: var(--teal-dark); }
+    .btn-ghost { border: 2px solid var(--teal); color: var(--teal); }
+    .btn-ghost:hover { background: var(--teal); color: var(--white); }
+
+    /* Mission band */
+    .mission { background: var(--teal); color: var(--white); padding: 56px 0; text-align: center; }
+    .mission p { font-family: "Fraunces", serif; font-size: clamp(1.3rem, 3vw, 1.75rem); max-width: 820px; margin: 0 auto; }
+
+    /* About */
+    .about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 50px; align-items: start; }
+    .about-body p { margin-bottom: 18px; }
+    .pull {
+      font-family: "Fraunces", serif; font-size: 1.5rem; color: var(--teal);
+      border-left: 4px solid var(--gold); padding-left: 20px;
+    }
+    .signature { font-weight: 600; margin-top: 8px; }
+
+    /* Cards */
+    .alt { background: var(--white); }
+    .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 36px; }
+    .card {
+      background: var(--cream); border: 1px solid var(--sand);
+      border-radius: var(--radius); padding: 26px;
+    }
+    .card .icon {
+      width: 46px; height: 46px; border-radius: 50%;
+      background: var(--gold-soft); display: grid; place-items: center; margin-bottom: 16px;
+    }
+    .card h3 { font-size: 1.25rem; margin-bottom: 8px; }
+    .card p { color: var(--muted); font-size: 1rem; }
+
+    /* Who we serve */
+    .serve-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 30px; list-style: none; }
+    .serve-list li {
+      background: var(--white); border-radius: var(--radius); padding: 18px 22px;
+      border-left: 4px solid var(--teal);
+    }
+
+    /* Values */
+    .values { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .values span {
+      background: var(--sand); padding: 10px 18px; border-radius: 999px; font-weight: 600; font-size: 1rem;
+    }
+
+    /* Daily Hope */
+    .video {
+      position: relative; aspect-ratio: 16 / 9; margin-top: 30px;
+      border-radius: var(--radius); overflow: hidden; background: var(--ink);
+    }
+    .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .video-placeholder {
+      position: absolute; inset: 0; display: grid; place-items: center; text-align: center;
+      color: var(--gold-soft); padding: 20px; font-family: "Fraunces", serif; font-size: 1.3rem;
+    }
+
+    /* Get involved */
+    .involve { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+
+    /* Contact */
+    .contact-box {
+      background: var(--teal); color: var(--white); border-radius: var(--radius);
+      padding: 48px; text-align: center;
+    }
+    .contact-box h2 { color: var(--white); }
+    .contact-box p { color: #d8e8e8; max-width: 600px; margin: 0 auto 24px; }
+    .contact-box .btn { background: var(--gold); color: var(--ink); }
+
+    /* Footer */
+    footer { padding: 40px 0; text-align: center; color: var(--muted); font-size: .95rem; }
+    footer .closing { font-family: "Fraunces", serif; font-size: 1.3rem; color: var(--ink); margin-bottom: 12px; }
+    .crisis { margin-top: 14px; font-size: .95rem; }
+
+    /* Mobile */
+    @media (max-width: 900px) {
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      .involve { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 760px) {
+      section { padding: 60px 0; }
+      .menu-btn { display: block; }
+      .nav ul {
+        display: none; position: absolute; top: 64px; left: 0; right: 0;
+        flex-direction: column; gap: 0; background: var(--cream); border-bottom: 1px solid var(--sand);
+      }
+      .nav ul.open { display: flex; }
+      .nav ul a { display: block; padding: 14px 20px; }
+      .hero-grid, .about-grid { grid-template-columns: 1fr; }
+      .hero-text { padding-bottom: 10px; }
+      .cards, .serve-list { grid-template-columns: 1fr; }
+      .contact-box { padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="wrap nav" aria-label="Main">
+      <a href="#home" class="brand">On a Journey, <span>But Not Alone</span></a>
+      <button class="menu-btn" aria-label="Open menu" aria-expanded="false" onclick="toggleMenu(this)">☰</button>
+      <ul id="menu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#serve">Who We Serve</a></li>
+        <li><a href="#hope">Daily Hope</a></li>
+        <li><a href="#involved">Get Involved</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HOME -->
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div class="hero-text">
+          <p class="eyebrow">Austin, Texas</p>
+          <h1>You don't have to walk this road <em>alone.</em></h1>
+          <p>On a Journey, But Not Alone — we walk beside you with support, compassion, and hope.</p>
+          <div class="btns">
+            <a href="#contact" class="btn btn-primary">Reach Out</a>
+            <a href="#about" class="btn btn-ghost">Our Story</a>
+          </div>
+        </div>
+        <!-- Winding road toward a sunrise -->
+        <svg viewBox="0 0 500 380" role="img" aria-label="A winding road leading toward a rising sun">
+          <circle cx="330" cy="150" r="70" fill="#d9a441" opacity=".9"/>
+          <circle cx="330" cy="150" r="100" fill="#d9a441" opacity=".18"/>
+          <path d="M0 230 Q120 170 250 210 T500 190 V380 H0Z" fill="#9fbfb4"/>
+          <path d="M0 270 Q150 220 280 260 T500 250 V380 H0Z" fill="#4f8a83"/>
+          <path d="M0 310 Q160 280 300 305 T500 300 V380 H0Z" fill="#1f5f63"/>
+          <path d="M140 380 C200 330 330 320 300 280 C285 260 320 240 335 222 L345 222 C335 245 310 262 322 282 C350 325 260 345 260 380Z" fill="#f2e9da"/>
+          <path d="M200 380 C240 345 315 330 310 285 C306 265 328 245 340 224" stroke="#d9a441" stroke-width="3" stroke-dasharray="10 9" fill="none"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- MISSION -->
+    <div class="mission">
+      <div class="wrap">
+        <p>Our mission is to walk alongside people facing difficult seasons by offering advocacy, peer support, spiritual guidance, and practical assistance.</p>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="wrap about-grid">
+        <div>
+          <p class="eyebrow">My Story</p>
+          <h2>A calling to walk beside others</h2>
+          <p class="pull">"You don't have to do this thing called life alone."</p>
+        </div>
+        <div class="about-body">
+          <p>Life is a journey filled with unexpected turns, difficult seasons, and moments when the next step is hard to see. Along the way, many people quietly carry burdens they believe they must face by themselves. On a Journey, But Not Alone exists to remind them that they don't have to.</p>
+          <p>This ministry was placed on my heart many years ago. I believe it is part of my calling from God: to help people find encouragement, support, and hope as they navigate life. My purpose is to walk alongside others—not to promise that every challenge will disappear, but to offer a listening ear, compassionate support, and a reminder that even in hard times, they are not forgotten or alone.</p>
+          <p>Faith can bring comfort and strength, especially when life feels uncertain. Through On a Journey, But Not Alone, I hope to create a welcoming space where people can feel seen, supported, and encouraged to keep moving forward. Every person's journey is different, and no one should have to pretend they have everything figured out.</p>
+          <p>The message at the heart of this ministry is simple: You don't have to do this thing called life alone. With God's guidance and the care of others, it is possible to find strength for today and hope for the road ahead.</p>
+          <p class="signature">— Rodney Davis, Founder</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="alt">
+      <div class="wrap">
+        <p class="eyebrow">How We Help</p>
+        <h2>Services</h2>
+        <p class="lead">Support shaped around each person's needs and choices.</p>
+        <div class="cards">
+          <div class="card">
+            <div class="icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1f5f63" stroke-width="2" stroke-linecap="round"><path d="M12 3v18M5 8l7-5 7 5M4 14l3-6 3 6a3 3 0 0 1-6 0zM14 14l3-6 3 6a3 3 0 0 1-6 0z"/></svg>
+            </div>
+            <h3>Advocacy</h3>
+            <p>Help navigating systems, finding resources, and making sure your voice is heard.</p>
+          </div>
+          <div class="card">
+            <div class="icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1f5f63" stroke-width="2" stroke-linecap="round"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M2 20c0-3 3-5 6-5s6 2 6 5M14 15c3 0 8 1 8 5"/></svg>
+            </div>
+            <h3>Peer Support</h3>
+            <p>Someone who listens without judgment and walks with you through hard seasons.</p>
+          </div>
+          <div class="card">
+            <div class="icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1f5f63" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M6 8h12"/></svg>
+            </div>
+            <h3>Spiritual Guidance</h3>
+            <p>Prayer, encouragement, and faith-based support for those who welcome it.</p>
+          </div>
+          <div class="card">
+            <div class="icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1f5f63" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-6 9 6v11H3z"/><path d="M9 20v-6h6v6"/></svg>
+            </div>
+            <h3>Essential Items</h3>
+            <p>Food, clothing and shoes, children's items, and household goods for families in need.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHO WE SERVE -->
+    <section id="serve">
+      <div class="wrap">
+        <p class="eyebrow">Who We Serve</p>
+        <h2>Anyone in a difficult season</h2>
+        <ul class="serve-list">
+          <li>Individuals and families facing hardship</li>
+          <li>Parents and caregivers</li>
+          <li>People seeking guidance or resources</li>
+          <li>Anyone going through a difficult season of life</li>
+        </ul>
+        <p class="eyebrow" style="margin-top:50px">Our Values</p>
+        <div class="values">
+          <span>Dignity, kindness &amp; respect</span>
+          <span>Listening without judgment</span>
+          <span>Your needs, your choices</span>
+          <span>Protecting your privacy</span>
+          <span>Hope, connection &amp; a way forward</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- DAILY HOPE -->
+    <section id="hope" class="alt">
+      <div class="wrap">
+        <p class="eyebrow">Daily Hope</p>
+        <h2>A word of encouragement for today</h2>
+        <p class="lead">Short videos to help you find strength for today and hope for the road ahead.</p>
+        <div class="video">
+          <!--
+            TO TURN ON DAILY HOPE:
+            1. Get Rodney's YouTube channel ID (starts with "UC...").
+            2. Change the "UC" at the start to "UU" — that's his uploads playlist.
+            3. Delete the placeholder div below and uncomment the iframe, pasting the UU... ID after list=
+            The newest video will show automatically every time he uploads.
+          -->
+          <!-- <iframe src="https://www.youtube.com/embed/videoseries?list=UUxxxxxxxxxxxxxxxxxxxxxx" title="Daily Hope videos" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe> -->
+          <div class="video-placeholder">Daily Hope videos are coming soon.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GET INVOLVED -->
+    <section id="involved">
+      <div class="wrap">
+        <p class="eyebrow">Get Involved</p>
+        <h2>Walk with us</h2>
+        <p class="lead">Every act of kindness helps someone take the next step.</p>
+        <div class="involve">
+          <div class="card">
+            <h3>Donate Items</h3>
+            <p>Food, clothing and shoes, children's items, and household goods go directly to people who need them.</p>
+          </div>
+          <div class="card">
+            <h3>Volunteer</h3>
+            <p>Give your time to help sort donations, support events, or walk alongside someone in need.</p>
+          </div>
+          <div class="card">
+            <h3>Community Partners</h3>
+            <p>Churches, food programs, clothing providers, and nonprofits — let's work together to serve our neighbors.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="alt">
+      <div class="wrap">
+        <div class="contact-box">
+          <h2>Reach out — you're not alone</h2>
+          <p>Whether you need support, want to help, or just need someone to listen, we'd love to hear from you.</p>
+          <!-- TODO: add Rodney's public contact info once he confirms it -->
+          <p><strong>Contact details coming soon.</strong></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p class="closing">No one should have to face life's challenges alone.</p>
+      <p>© <span id="year"></span> On a Journey, But Not Alone · Austin, Texas</p>
+      <p class="crisis">If you are in crisis, call or text <a href="tel:988">988</a> (Suicide &amp; Crisis Lifeline), available 24/7.</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu(btn) {
+      const menu = document.getElementById('menu');
+      const open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+    }
+    document.querySelectorAll('#menu a').forEach(a =>
+      a.addEventListener('click', () => {
+        document.getElementById('menu').classList.remove('open');
+        document.querySelector('.menu-btn').setAttribute('aria-expanded', 'false');
+      })
+    );
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
