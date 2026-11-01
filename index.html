@@ -14,11 +14,11 @@
   <meta property="og:site_name" content="On a Journey, But Not Alone" />
   <meta property="og:title" content="On a Journey, But Not Alone" />
   <meta property="og:description" content="We walk beside you with support, compassion, and hope. Advocacy, peer support, spiritual guidance, and essential items in Austin, Texas." />
-  <meta property="og:url" content="https://onjourneybutnotalone.github.io/" />
-  <meta property="og:image" content="https://onjourneybutnotalone.github.io/assets/og-image.png" />
+  <meta property="og:url" content="https://onajourneybutnotalone.org/" />
+  <meta property="og:image" content="https://onajourneybutnotalone.org/assets/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="On a Journey, But Not Alone — a winding road toward a rising sun" />
+  <meta property="og:image:alt" content="On a Journey, But Not Alone &mdash; a winding road toward a rising sun" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -66,7 +66,9 @@
       backdrop-filter: blur(6px);
     }
     .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-    .brand { font-family: "Fraunces", serif; font-weight: 600; font-size: 1.15rem; color: var(--ink); text-decoration: none; }
+    .brand { display: flex; align-items: center; gap: 10px; font-family: "Fraunces", serif; font-weight: 600; font-size: 1.15rem; color: var(--ink); text-decoration: none; }
+    .brand img { width: 42px; height: 42px; flex-shrink: 0; }
+    .brand .brand-text { color: var(--ink); }
     .brand span { color: var(--teal); }
     .nav ul { display: flex; gap: 22px; list-style: none; }
     .nav ul a { text-decoration: none; color: var(--ink); font-weight: 600; font-size: 1rem; }
@@ -183,6 +185,8 @@
     @media (max-width: 760px) {
       section { padding: 60px 0; }
       .menu-btn { display: block; }
+      .brand { font-size: 1rem; gap: 8px; }
+      .brand img { width: 36px; height: 36px; }
       .nav ul {
         display: none; position: absolute; top: 64px; left: 0; right: 0;
         flex-direction: column; gap: 0; background: var(--cream); border-bottom: 1px solid var(--sand);
@@ -200,8 +204,8 @@
 
   <header>
     <nav class="wrap nav" aria-label="Main">
-      <a href="#home" class="brand">On a Journey, <span>But Not Alone</span></a>
-      <button class="menu-btn" aria-label="Open menu" aria-expanded="false" onclick="toggleMenu(this)">☰</button>
+      <a href="#home" class="brand"><img src="assets/logo.svg" alt="" width="42" height="42" /><span class="brand-text">On a Journey, <span>But Not Alone</span></span></a>
+      <button class="menu-btn" aria-label="Open menu" aria-expanded="false" onclick="toggleMenu(this)">&#9776;</button>
       <ul id="menu">
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
@@ -221,21 +225,22 @@
         <div class="hero-text">
           <p class="eyebrow">Austin, Texas</p>
           <h1>You don't have to walk this road <em>alone.</em></h1>
-          <p>On a Journey, But Not Alone — we walk beside you with support, compassion, and hope.</p>
+          <p>On a Journey, But Not Alone &mdash; we walk beside you with support, compassion, and hope.</p>
           <div class="btns">
             <a href="#contact" class="btn btn-primary">Reach Out</a>
             <a href="#about" class="btn btn-ghost">Our Story</a>
           </div>
         </div>
         <!-- Winding road toward a sunrise -->
-        <svg viewBox="0 0 500 380" role="img" aria-label="A winding road leading toward a rising sun">
+        <svg viewBox="0 0 500 380" role="img" aria-label="A winding road with one set of footprints leading toward a rising sun">
           <circle cx="330" cy="150" r="70" fill="#d9a441" opacity=".9"/>
           <circle cx="330" cy="150" r="100" fill="#d9a441" opacity=".18"/>
           <path d="M0 230 Q120 170 250 210 T500 190 V380 H0Z" fill="#9fbfb4"/>
           <path d="M0 270 Q150 220 280 260 T500 250 V380 H0Z" fill="#4f8a83"/>
           <path d="M0 310 Q160 280 300 305 T500 300 V380 H0Z" fill="#1f5f63"/>
           <path d="M140 380 C200 330 330 320 300 280 C285 260 320 240 335 222 L345 222 C335 245 310 262 322 282 C350 325 260 345 260 380Z" fill="#f2e9da"/>
-          <path d="M200 380 C240 345 315 330 310 285 C306 265 328 245 340 224" stroke="#d9a441" stroke-width="3" stroke-dasharray="10 9" fill="none"/>
+          <!-- One set of footprints walking toward the sun (matches the logo) -->
+          <g fill="#a98a5b"><g opacity="0.94" transform="translate(216.0,378.4) rotate(-35.2) scale(0.799,0.799)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.84" transform="translate(228.2,352.1) rotate(-29.6) scale(0.664,-0.664)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.75" transform="translate(252.9,353.8) rotate(-28.3) scale(0.559,0.559)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.67" transform="translate(263.0,335.3) rotate(-29.5) scale(0.474,-0.474)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.60" transform="translate(281.3,335.9) rotate(-32.8) scale(0.406,0.406)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.55" transform="translate(287.1,321.1) rotate(-38.3) scale(0.351,-0.351)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.50" transform="translate(300.9,319.0) rotate(-46.7) scale(0.306,0.306)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.45" transform="translate(301.8,306.6) rotate(-58.0) scale(0.268,-0.268)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.41" transform="translate(311.3,301.0) rotate(-71.7) scale(0.236,0.236)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.38" transform="translate(307.4,291.9) rotate(-85.5) scale(0.210,-0.210)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.35" transform="translate(312.4,284.3) rotate(-100.8) scale(0.188,0.188)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.32" transform="translate(307.3,277.9) rotate(-85.5) scale(0.169,-0.169)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.29" transform="translate(312.7,272.7) rotate(-74.7) scale(0.152,0.152)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.27" transform="translate(310.6,266.2) rotate(-67.3) scale(0.138,-0.138)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.25" transform="translate(316.3,263.2) rotate(-62.5) scale(0.126,0.126)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.23" transform="translate(315.4,257.4) rotate(-59.3) scale(0.116,-0.116)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.21" transform="translate(320.6,255.4) rotate(-57.1) scale(0.106,0.106)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.19" transform="translate(320.5,249.8) rotate(-55.6) scale(0.098,-0.098)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.17" transform="translate(325.5,247.9) rotate(-54.7) scale(0.090,0.090)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.15" transform="translate(325.8,242.6) rotate(-54.3) scale(0.082,-0.082)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.13" transform="translate(330.7,240.5) rotate(-54.3) scale(0.076,0.076)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.11" transform="translate(331.1,235.3) rotate(-54.9) scale(0.070,-0.070)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.09" transform="translate(335.8,233.1) rotate(-55.9) scale(0.066,0.066)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.08" transform="translate(336.2,228.0) rotate(-57.5) scale(0.062,-0.062)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g></g>
         </svg>
       </div>
     </section>
@@ -257,10 +262,10 @@
         </div>
         <div class="about-body">
           <p>Life is a journey filled with unexpected turns, difficult seasons, and moments when the next step is hard to see. Along the way, many people quietly carry burdens they believe they must face by themselves. On a Journey, But Not Alone exists to remind them that they don't have to.</p>
-          <p>This ministry was placed on my heart many years ago. I believe it is part of my calling from God: to help people find encouragement, support, and hope as they navigate life. My purpose is to walk alongside others—not to promise that every challenge will disappear, but to offer a listening ear, compassionate support, and a reminder that even in hard times, they are not forgotten or alone.</p>
+          <p>This ministry was placed on my heart many years ago. I believe it is part of my calling from God: to help people find encouragement, support, and hope as they navigate life. My purpose is to walk alongside others&mdash;not to promise that every challenge will disappear, but to offer a listening ear, compassionate support, and a reminder that even in hard times, they are not forgotten or alone.</p>
           <p>Faith can bring comfort and strength, especially when life feels uncertain. Through On a Journey, But Not Alone, I hope to create a welcoming space where people can feel seen, supported, and encouraged to keep moving forward. Every person's journey is different, and no one should have to pretend they have everything figured out.</p>
           <p>The message at the heart of this ministry is simple: You don't have to do this thing called life alone. With God's guidance and the care of others, it is possible to find strength for today and hope for the road ahead.</p>
-          <p class="signature">— Rodney Davis, Founder</p>
+          <p class="signature">&mdash; Rodney Davis, Founder</p>
         </div>
       </div>
     </section>
@@ -336,7 +341,7 @@
           <!--
             TO TURN ON DAILY HOPE:
             1. Get Rodney's YouTube channel ID (starts with "UC...").
-            2. Change the "UC" at the start to "UU" — that's his uploads playlist.
+            2. Change the "UC" at the start to "UU" &mdash; that's his uploads playlist.
             3. Delete the placeholder div below and uncomment the iframe, pasting the UU... ID after list=
             The newest video will show automatically every time he uploads.
           -->
@@ -421,7 +426,7 @@
           </div>
           <div class="card">
             <h3>Community Partners</h3>
-            <p>Churches, food programs, clothing providers, and nonprofits — let's work together to serve our neighbors.</p>
+            <p>Churches, food programs, clothing providers, and nonprofits &mdash; let's work together to serve our neighbors.</p>
           </div>
         </div>
       </div>
@@ -431,11 +436,11 @@
     <section id="contact" class="alt">
       <div class="wrap">
         <div class="contact-box">
-          <h2>Reach out — you're not alone</h2>
+          <h2>Reach out &mdash; you're not alone</h2>
           <p>Whether you need support, want to help, or just need someone to listen, we'd love to hear from you.</p>
           <div class="contact-links">
             <a href="tel:7372852293" class="btn">Call or text 737-285-2293</a>
-            <a href="mailto:onjourneybutnotalone@gmail.com" class="btn btn-outline">onjourneybutnotalone@gmail.com</a>
+            <a href="mailto:onajourneybutnotalone@gmail.com" class="btn btn-outline">onajourneybutnotalone@gmail.com</a>
           </div>
         </div>
       </div>
@@ -445,7 +450,7 @@
   <footer>
     <div class="wrap">
       <p class="closing">No one should have to face life's challenges alone.</p>
-      <p>© <span id="year"></span> On a Journey, But Not Alone · Austin, Texas</p>
+      <p>&copy; <span id="year"></span> On a Journey, But Not Alone &middot; Austin, Texas</p>
       <p class="crisis">If you are in crisis, call or text <a href="tel:988">988</a> (Suicide &amp; Crisis Lifeline), available 24/7.</p>
     </div>
   </footer>
