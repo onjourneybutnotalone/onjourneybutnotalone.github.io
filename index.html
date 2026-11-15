@@ -143,6 +143,25 @@
       color: var(--gold-soft); padding: 20px; font-family: "Fraunces", serif; font-size: 1.3rem;
     }
 
+    /* Daily Devotional */
+    .devo {
+      margin-top: 30px; background: var(--cream); border: 1px solid var(--sand);
+      border-left: 5px solid var(--gold); border-radius: var(--radius); padding: 32px;
+    }
+    .devo-date { font-size: .9rem; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); font-weight: 600; }
+    .devo h3 { font-size: clamp(1.4rem, 3vw, 1.8rem); margin: 6px 0 18px; }
+    .devo blockquote {
+      font-family: "Fraunces", Georgia, serif; font-size: 1.3rem; line-height: 1.5; color: var(--teal-dark);
+      background: var(--white); border-radius: 10px; padding: 20px 24px; margin-bottom: 20px; white-space: pre-line;
+    }
+    .devo cite { display: block; margin-top: 10px; font-family: "Source Sans 3", sans-serif; font-style: normal; font-size: 1rem; font-weight: 600; }
+    .devo cite a { color: var(--teal); }
+    .devo-body { white-space: pre-line; }
+    .devo-sign { font-weight: 600; margin-top: 16px; }
+    .devo-empty { color: var(--muted); font-family: "Fraunces", serif; font-size: 1.2rem; text-align: center; }
+    .hope-sub { font-size: 1.35rem; margin-top: 50px; color: var(--teal); }
+    .nlt-credit { margin-top: 14px; font-size: .8rem; max-width: 760px; margin-left: auto; margin-right: auto; }
+
     /* Get involved */
     .involve { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
 
@@ -197,6 +216,7 @@
       .hero-text { padding-bottom: 10px; }
       .cards, .serve-list, .res-grid { grid-template-columns: 1fr; }
       .contact-box { padding: 32px 20px; }
+      .devo { padding: 24px 20px; }
     }
   </style>
 </head>
@@ -336,7 +356,14 @@
       <div class="wrap">
         <p class="eyebrow">Daily Hope</p>
         <h2>A word of encouragement for today</h2>
-        <p class="lead">Short videos to help you find strength for today and hope for the road ahead.</p>
+        <p class="lead">A daily devotional and short videos to help you find strength for today and hope for the road ahead.</p>
+
+        <!-- DAILY DEVOTIONAL: filled in automatically from Rodney's Google Sheet (see DEVO_SHEET_CSV in the script at the bottom) -->
+        <article class="devo" id="devo" aria-live="polite">
+          <p class="devo-empty">Today's devotional is on its way. Check back soon.</p>
+        </article>
+
+        <h3 class="hope-sub">Daily Hope videos</h3>
         <div class="video">
           <!--
             TO TURN ON DAILY HOPE:
@@ -452,6 +479,7 @@
       <p class="closing">No one should have to face life's challenges alone.</p>
       <p>&copy; <span id="year"></span> On a Journey, But Not Alone &middot; Austin, Texas</p>
       <p class="crisis">If you are in crisis, call or text <a href="tel:988">988</a> (Suicide &amp; Crisis Lifeline), available 24/7.</p>
+      <p class="nlt-credit">Scripture quotations are taken from the Holy Bible, New Living Translation, copyright &copy;1996, 2004, 2015 by Tyndale House Foundation. Used by permission of Tyndale House Publishers, Carol Stream, Illinois 60188. All rights reserved.</p>
     </div>
   </footer>
 
@@ -468,6 +496,79 @@
       })
     );
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* ---------- DAILY DEVOTIONAL ----------
+       Rodney types devotionals into a Google Sheet with these columns (row 1 = headers):
+         Date | Title | Scripture | Verse | Devotional
+       Example:  11/16/2026 | Strength for Today | Isaiah 41:10 | (NLT verse text) | (his message)
+       To connect it: in the Sheet, File > Share > Publish to web > pick the sheet tab > "Comma-separated values (.csv)" > Publish.
+       Paste that link between the quotes below. Changes show on the site within about 5 minutes.
+       The site shows today's entry (Austin time). If today is blank, it shows the most recent past entry. */
+    const DEVO_SHEET_CSV = '';
+
+    (function loadDevotional() {
+      const box = document.getElementById('devo');
+      if (!DEVO_SHEET_CSV) return;
+
+      function parseCSV(text) {
+        const rows = []; let row = [], field = '', q = false;
+        for (let i = 0; i < text.length; i++) {
+          const c = text[i];
+          if (q) {
+            if (c === '"' && text[i + 1] === '"') { field += '"'; i++; }
+            else if (c === '"') q = false;
+            else field += c;
+          } else if (c === '"') q = true;
+          else if (c === ',') { row.push(field); field = ''; }
+          else if (c === '\n' || c === '\r') {
+            if (c === '\r' && text[i + 1] === '\n') i++;
+            row.push(field); rows.push(row); row = []; field = '';
+          } else field += c;
+        }
+        if (field || row.length) { row.push(field); rows.push(row); }
+        return rows;
+      }
+      function toKey(s) { // returns YYYYMMDD number, accepts 11/16/2026 or 2026-11-16
+        s = (s || '').trim(); let m;
+        if ((m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/))) return +m[3] * 10000 + +m[1] * 100 + +m[2];
+        if ((m = s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/))) return +m[1] * 10000 + +m[2] * 100 + +m[3];
+        return null;
+      }
+      function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text) e.textContent = text; return e; }
+
+      const p = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Chicago', year: 'numeric', month: 'numeric', day: 'numeric' })
+        .formatToParts(new Date()).reduce((o, x) => (o[x.type] = x.value, o), {});
+      const todayKey = +p.year * 10000 + +p.month * 100 + +p.day;
+
+      fetch(DEVO_SHEET_CSV, { cache: 'no-store' })
+        .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
+        .then(text => {
+          const rows = parseCSV(text).slice(1)
+            .map(r => ({ key: toKey(r[0]), title: (r[1] || '').trim(), ref: (r[2] || '').trim(), verse: (r[3] || '').trim(), body: (r[4] || '').trim() }))
+            .filter(r => r.key && r.key <= todayKey && (r.verse || r.body))
+            .sort((a, b) => b.key - a.key);
+          const d = rows[0];
+          if (!d) return;
+
+          const date = new Date(Math.floor(d.key / 10000), Math.floor(d.key / 100) % 100 - 1, d.key % 100);
+          box.innerHTML = '';
+          box.appendChild(el('p', 'devo-date', date.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })));
+          box.appendChild(el('h3', null, d.title || 'Today’s Devotional'));
+          if (d.verse) {
+            const bq = el('blockquote', null, d.verse);
+            if (d.ref) {
+              const cite = el('cite'); const a = el('a', null, d.ref + ' (NLT)');
+              a.href = 'https://www.biblegateway.com/passage/?search=' + encodeURIComponent(d.ref) + '&version=NLT';
+              a.target = '_blank'; a.rel = 'noopener';
+              cite.append('— ', a); bq.appendChild(cite);
+            }
+            box.appendChild(bq);
+          }
+          if (d.body) box.appendChild(el('p', 'devo-body', d.body));
+          box.appendChild(el('p', 'devo-sign', '— Rodney'));
+        })
+        .catch(() => { /* keep the "on its way" message */ });
+    })();
   </script>
 </body>
 </html>
