@@ -1,1098 +1,574 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anonymous Haven · Recovery Technology for the People</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@300;400;500&family=Literata:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <title>On a Journey, But Not Alone</title>
+  <meta name="description" content="On a Journey, But Not Alone walks beside people in difficult seasons with advocacy, peer support, spiritual guidance, and essential items. Austin, Texas." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <meta name="theme-color" content="#1f5f63" />
+
+  <!-- Link preview (Facebook, texts, etc.) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="On a Journey, But Not Alone" />
+  <meta property="og:title" content="On a Journey, But Not Alone" />
+  <meta property="og:description" content="We walk beside you with support, compassion, and hope. Advocacy, peer support, spiritual guidance, and essential items in Austin, Texas." />
+  <meta property="og:url" content="https://onajourneybutnotalone.org/" />
+  <meta property="og:image" content="https://onajourneybutnotalone.org/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="On a Journey, But Not Alone &mdash; a winding road toward a rising sun" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #0a0a08;
-      --bg2: #111110;
-      --surface: #181816;
-      --border: #2a2a26;
-      --gold: #c9a84c;
-      --gold-dim: #8a6d2f;
-      --cream: #f0e6cc;
-      --cream-dim: #a89878;
-      --white: #f5f2eb;
-      --muted: #5a5750;
-      --green: #4a7c59;
-      --green-bright: #6aab7a;
-      --red: #8b3a3a;
+      --cream: #fbf7f0;
+      --sand: #f2e9da;
+      --ink: #1f2a33;
+      --muted: #55616b;
+      --teal: #1f5f63;
+      --teal-dark: #164649;
+      --gold: #d9a441;
+      --gold-soft: #f4dfb4;
+      --white: #ffffff;
+      --radius: 14px;
+      --max: 1100px;
     }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
     body {
-      background: var(--bg);
-      color: var(--cream);
-      font-family: 'Literata', Georgia, serif;
-      font-weight: 300;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    /* Grain overlay */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 1000;
-      opacity: 0.4;
-    }
-
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      padding: 1.25rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: linear-gradient(to bottom, rgba(10,10,8,0.95) 0%, transparent 100%);
-      backdrop-filter: blur(2px);
-    }
-
-    .nav-logo {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      color: var(--gold);
-      text-transform: uppercase;
-      text-decoration: none;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      color: var(--cream-dim);
-      text-decoration: none;
-      text-transform: uppercase;
-      transition: color 0.3s;
-    }
-
-    .nav-links a:hover { color: var(--gold); }
-
-    /* HERO */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 8rem 2rem 4rem;
-      max-width: 1100px;
-      margin: 0 auto;
-      position: relative;
-    }
-
-    .hero-eyebrow {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.3em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 2rem;
-      opacity: 0;
-      animation: fadeUp 0.8s ease 0.2s forwards;
-    }
-
-    .hero-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(3rem, 8vw, 7rem);
-      font-weight: 900;
-      line-height: 1.0;
-      color: var(--white);
-      margin-bottom: 1.5rem;
-      opacity: 0;
-      animation: fadeUp 0.8s ease 0.4s forwards;
-    }
-
-    .hero-title em {
-      font-style: italic;
-      color: var(--gold);
-    }
-
-    .hero-subtitle {
-      font-size: clamp(1.1rem, 2vw, 1.4rem);
-      color: var(--cream-dim);
-      max-width: 580px;
-      margin-bottom: 3rem;
-      font-style: italic;
-      opacity: 0;
-      animation: fadeUp 0.8s ease 0.6s forwards;
-    }
-
-    .hero-quote {
-      border-left: 2px solid var(--gold-dim);
-      padding-left: 1.5rem;
-      margin-bottom: 3.5rem;
-      max-width: 520px;
-      opacity: 0;
-      animation: fadeUp 0.8s ease 0.8s forwards;
-    }
-
-    .hero-quote p {
-      font-style: italic;
-      color: var(--cream-dim);
-      font-size: 1rem;
-      line-height: 1.8;
-    }
-
-    .hero-quote cite {
-      display: block;
-      margin-top: 0.75rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      color: var(--muted);
-      text-transform: uppercase;
-      font-style: normal;
-    }
-
-    .hero-cta {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp 0.8s ease 1s forwards;
-    }
-
-    .btn-primary {
-      display: inline-block;
-      padding: 0.9rem 2rem;
-      background: var(--gold);
-      color: var(--bg);
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      text-decoration: none;
-      font-weight: 500;
-      transition: all 0.3s;
-    }
-
-    .btn-primary:hover {
+      font-family: "Source Sans 3", system-ui, sans-serif;
+      font-size: 1.125rem;
+      line-height: 1.65;
+      color: var(--ink);
       background: var(--cream);
-      transform: translateY(-2px);
     }
-
-    .btn-ghost {
-      display: inline-block;
-      padding: 0.9rem 2rem;
-      border: 1px solid var(--border);
-      color: var(--cream-dim);
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: all 0.3s;
-    }
-
-    .btn-ghost:hover {
-      border-color: var(--gold-dim);
-      color: var(--gold);
-    }
-
-    /* Scroll indicator */
-    .scroll-line {
-      position: absolute;
-      bottom: 2rem;
-      left: 2rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      opacity: 0;
-      animation: fadeIn 1s ease 1.5s forwards;
-    }
-
-    .scroll-line span {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      color: var(--muted);
-      text-transform: uppercase;
-    }
-
-    .scroll-line::before {
-      content: '';
-      display: block;
-      width: 40px;
-      height: 1px;
-      background: var(--muted);
-    }
-
-    /* SECTION BASE */
-    section {
-      padding: 6rem 2rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .section-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .section-label::after {
-      content: '';
-      display: block;
-      height: 1px;
-      width: 40px;
-      background: var(--gold-dim);
-    }
-
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 700;
-      color: var(--white);
-      line-height: 1.15;
-      margin-bottom: 1.5rem;
-    }
-
-    .section-title em {
-      font-style: italic;
-      color: var(--gold);
-    }
-
-    .divider {
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(to right, transparent, var(--border), transparent);
-      margin: 0 auto;
-    }
-
-    /* MISSION */
-    .mission-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-      margin-top: 3rem;
-    }
-
-    .mission-text p {
-      color: var(--cream-dim);
-      font-size: 1.05rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .mission-text p strong {
-      color: var(--cream);
-      font-weight: 400;
-    }
-
-    .mission-stat-block {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .stat-item {
-      border-left: 1px solid var(--border);
-      padding-left: 1.5rem;
-    }
-
-    .stat-number {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      font-weight: 900;
-      color: var(--gold);
-      line-height: 1;
-      margin-bottom: 0.25rem;
-    }
-
-    .stat-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      color: var(--muted);
-      text-transform: uppercase;
-    }
-
-    /* PLATFORM */
-    .platform-intro {
-      max-width: 640px;
-      color: var(--cream-dim);
-      font-size: 1.05rem;
-      margin-bottom: 3rem;
-      font-style: italic;
-    }
-
-    .platform-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      position: relative;
-    }
-
-    .platform-stack::before {
-      content: '';
-      position: absolute;
-      left: 1.75rem;
-      top: 2rem;
-      bottom: 2rem;
-      width: 1px;
-      background: linear-gradient(to bottom, var(--gold-dim), var(--border), transparent);
-    }
-
-    .platform-item {
-      display: grid;
-      grid-template-columns: 3.5rem 1fr;
-      gap: 1.5rem;
-      align-items: start;
-      padding: 2rem 0;
-      border-bottom: 1px solid var(--border);
-      transition: all 0.3s;
-      cursor: default;
-    }
-
-    .platform-item:last-child { border-bottom: none; }
-
-    .platform-item:hover .platform-content {
-      transform: translateX(4px);
-    }
-
-    .platform-node {
-      width: 3.5rem;
-      height: 3.5rem;
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      color: var(--gold);
-      letter-spacing: 0.1em;
-      background: var(--bg2);
-      position: relative;
-      z-index: 1;
-      flex-shrink: 0;
-    }
-
-    .platform-content {
-      transition: transform 0.3s;
-    }
-
-    .platform-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 0.4rem;
-    }
-
-    .platform-role {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      color: var(--gold-dim);
-      text-transform: uppercase;
-      margin-bottom: 0.75rem;
-    }
-
-    .platform-desc {
-      color: var(--cream-dim);
-      font-size: 0.95rem;
-      line-height: 1.7;
-    }
-
-    .platform-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.75rem;
-    }
-
-    .tag {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.1em;
-      padding: 0.25rem 0.6rem;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      text-transform: uppercase;
-    }
-
-    /* CREDENTIAL */
-    .credential-section {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 4rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .credential-section::before {
-      content: 'MANO';
-      position: absolute;
-      right: -1rem;
-      top: 50%;
-      transform: translateY(-50%) rotate(90deg);
-      font-family: 'Playfair Display', serif;
-      font-size: 8rem;
-      font-weight: 900;
-      color: var(--border);
-      letter-spacing: 0.1em;
-      pointer-events: none;
-      user-select: none;
-    }
-
-    .credential-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: start;
-      position: relative;
-      z-index: 1;
-    }
-
-    .credential-text .section-title {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-    }
-
-    .credential-text p {
-      color: var(--cream-dim);
-      font-size: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .credential-text .big-quote {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      font-style: italic;
-      color: var(--cream);
-      line-height: 1.6;
-      border-top: 1px solid var(--border);
-      padding-top: 1.5rem;
-      margin-top: 1.5rem;
-    }
-
-    .token-card {
-      background: var(--bg);
-      border: 1px solid var(--gold-dim);
-      padding: 2rem;
-    }
-
-    .token-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .token-symbol {
-      width: 3rem;
-      height: 3rem;
-      background: var(--gold);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Playfair Display', serif;
-      font-weight: 900;
-      font-size: 1rem;
-      color: var(--bg);
-    }
-
-    .token-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--white);
-    }
-
-    .token-subtitle {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      color: var(--muted);
-      text-transform: uppercase;
-    }
-
-    .token-milestone {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.75rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .token-milestone:last-child { border-bottom: none; }
-
-    .milestone-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      color: var(--cream-dim);
-      text-transform: uppercase;
-    }
-
-    .milestone-reward {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--green-bright);
-      letter-spacing: 0.05em;
-    }
-
-    .token-note {
-      margin-top: 1.5rem;
-      padding: 1rem;
-      background: rgba(201, 168, 76, 0.05);
-      border-left: 2px solid var(--gold-dim);
-    }
-
-    .token-note p {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.05em;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    /* WHO */
-    .who-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--border);
-      margin-top: 3rem;
-    }
-
-    .who-item {
-      background: var(--bg);
-      padding: 2rem 1.5rem;
-      transition: background 0.3s;
-    }
-
-    .who-item:hover { background: var(--surface); }
-
-    .who-icon {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-
-    .who-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 0.75rem;
-    }
-
-    .who-desc {
-      color: var(--cream-dim);
-      font-size: 0.9rem;
-      line-height: 1.7;
-    }
-
-    /* FOUNDER */
-    .founder-section {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 4rem;
-      align-items: start;
-    }
-
-    .founder-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 2rem;
-      position: sticky;
-      top: 6rem;
-    }
-
-    .founder-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 0.25rem;
-    }
-
-    .founder-role {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-    }
-
-    .founder-details {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .founder-detail {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.05em;
-      color: var(--muted);
-      padding-left: 1rem;
-      border-left: 1px solid var(--border);
-      line-height: 1.5;
-    }
-
-    .founder-story p {
-      color: var(--cream-dim);
-      font-size: 1.05rem;
-      margin-bottom: 1.25rem;
-      line-height: 1.8;
-    }
-
-    .founder-story p strong {
-      color: var(--cream);
-      font-weight: 400;
-    }
-
-    .founder-story .pull-quote {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      font-style: italic;
-      color: var(--gold);
-      line-height: 1.5;
-      margin: 2rem 0;
-      padding-left: 1.5rem;
-      border-left: 2px solid var(--gold-dim);
-    }
-
-    /* CONTACT */
-    .contact-section {
-      text-align: center;
-      padding: 6rem 2rem;
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-    }
-
-    .contact-section .section-label {
-      justify-content: center;
-    }
-
-    .contact-section .section-label::after { display: none; }
-    .contact-section .section-label::before {
-      content: '';
-      display: block;
-      height: 1px;
-      width: 40px;
-      background: var(--gold-dim);
-    }
-
-    .contact-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 900;
-      color: var(--white);
-      margin-bottom: 1rem;
-    }
-
-    .contact-sub {
-      color: var(--cream-dim);
-      font-style: italic;
-      max-width: 480px;
-      margin: 0 auto 2.5rem;
-    }
-
-    .contact-links {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 3rem;
-    }
-
-    /* FOOTER */
-    footer {
-      padding: 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px solid var(--border);
-    }
-
-    .footer-brand {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      color: var(--muted);
-      text-transform: uppercase;
-    }
-
-    .footer-verse {
-      font-family: 'Literata', serif;
-      font-size: 0.75rem;
-      font-style: italic;
-      color: var(--muted);
-      text-align: right;
-    }
-
-    /* ANIMATIONS */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      nav { padding: 1rem; }
-      .nav-links { display: none; }
-      .mission-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .credential-grid { grid-template-columns: 1fr; }
-      .credential-section { padding: 2rem; }
-      .credential-section::before { display: none; }
-      .who-grid { grid-template-columns: 1fr; }
-      .founder-section { grid-template-columns: 1fr; }
-      .founder-card { position: static; }
-      footer { flex-direction: column; gap: 1rem; text-align: center; }
-      .footer-verse { text-align: center; }
-      .platform-item { grid-template-columns: 3rem 1fr; gap: 1rem; }
+    h1, h2, h3 { font-family: "Fraunces", Georgia, serif; line-height: 1.2; font-weight: 600; }
+    a { color: var(--teal); }
+    img, svg { display: block; max-width: 100%; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+    section { padding: 80px 0; scroll-margin-top: 70px; }
+    .eyebrow {
+      font-size: .85rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--teal); font-weight: 600; margin-bottom: 10px;
+    }
+    h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 18px; }
+    .lead { font-size: 1.2rem; color: var(--muted); max-width: 680px; }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(251, 247, 240, .95);
+      border-bottom: 1px solid var(--sand);
+      backdrop-filter: blur(6px);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-family: "Fraunces", serif; font-weight: 600; font-size: 1.15rem; color: var(--ink); text-decoration: none; }
+    .brand img { width: 42px; height: 42px; flex-shrink: 0; }
+    .brand .brand-text { color: var(--ink); }
+    .brand span { color: var(--teal); }
+    .nav ul { display: flex; gap: 22px; list-style: none; }
+    .nav ul a { text-decoration: none; color: var(--ink); font-weight: 600; font-size: 1rem; }
+    .nav ul a:hover { color: var(--teal); }
+    .menu-btn { display: none; background: none; border: 0; font-size: 1.6rem; cursor: pointer; color: var(--ink); }
+
+    /* Hero */
+    .hero { padding: 60px 0 0; background: linear-gradient(180deg, var(--cream) 0%, var(--gold-soft) 100%); }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: end; }
+    .hero-text { padding-bottom: 70px; }
+    .hero h1 { font-size: clamp(2.3rem, 6vw, 3.6rem); margin-bottom: 18px; }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero p { font-size: 1.25rem; color: var(--muted); margin-bottom: 28px; max-width: 520px; }
+    .btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      display: inline-block; padding: 13px 24px; border-radius: 999px;
+      font-weight: 600; text-decoration: none; font-size: 1rem;
+    }
+    .btn-primary { background: var(--teal); color: var(--white); }
+    .btn-primary:hover { background: var(--teal-dark); }
+    .btn-ghost { border: 2px solid var(--teal); color: var(--teal); }
+    .btn-ghost:hover { background: var(--teal); color: var(--white); }
+
+    /* Mission band */
+    .mission { background: var(--teal); color: var(--white); padding: 56px 0; text-align: center; }
+    .mission p { font-family: "Fraunces", serif; font-size: clamp(1.3rem, 3vw, 1.75rem); max-width: 820px; margin: 0 auto; }
+
+    /* About */
+    .about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 50px; align-items: start; }
+    .about-body p { margin-bottom: 18px; }
+    .pull {
+      font-family: "Fraunces", serif; font-size: 1.5rem; color: var(--teal);
+      border-left: 4px solid var(--gold); padding-left: 20px;
+    }
+    .signature { font-weight: 600; margin-top: 8px; }
+
+    /* Cards */
+    .alt { background: var(--white); }
+    .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 36px; }
+    .card {
+      background: var(--cream); border: 1px solid var(--sand);
+      border-radius: var(--radius); padding: 26px;
+    }
+    .card .icon {
+      width: 46px; height: 46px; border-radius: 50%;
+      background: var(--gold-soft); display: grid; place-items: center; margin-bottom: 16px;
+    }
+    .card h3 { font-size: 1.25rem; margin-bottom: 8px; }
+    .card p { color: var(--muted); font-size: 1rem; }
+
+    /* Who we serve */
+    .serve-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 30px; list-style: none; }
+    .serve-list li {
+      background: var(--white); border-radius: var(--radius); padding: 18px 22px;
+      border-left: 4px solid var(--teal);
+    }
+
+    /* Values */
+    .values { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .values span {
+      background: var(--sand); padding: 10px 18px; border-radius: 999px; font-weight: 600; font-size: 1rem;
+    }
+
+    /* Daily Hope */
+    .video {
+      position: relative; aspect-ratio: 16 / 9; margin-top: 30px;
+      border-radius: var(--radius); overflow: hidden; background: var(--ink);
+    }
+    .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .video-placeholder {
+      position: absolute; inset: 0; display: grid; place-items: center; text-align: center;
+      color: var(--gold-soft); padding: 20px; font-family: "Fraunces", serif; font-size: 1.3rem;
+    }
+
+    /* Daily Devotional */
+    .devo {
+      margin-top: 30px; background: var(--cream); border: 1px solid var(--sand);
+      border-left: 5px solid var(--gold); border-radius: var(--radius); padding: 32px;
+    }
+    .devo-date { font-size: .9rem; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); font-weight: 600; }
+    .devo h3 { font-size: clamp(1.4rem, 3vw, 1.8rem); margin: 6px 0 18px; }
+    .devo blockquote {
+      font-family: "Fraunces", Georgia, serif; font-size: 1.3rem; line-height: 1.5; color: var(--teal-dark);
+      background: var(--white); border-radius: 10px; padding: 20px 24px; margin-bottom: 20px; white-space: pre-line;
+    }
+    .devo cite { display: block; margin-top: 10px; font-family: "Source Sans 3", sans-serif; font-style: normal; font-size: 1rem; font-weight: 600; }
+    .devo cite a { color: var(--teal); }
+    .devo-body { white-space: pre-line; }
+    .devo-sign { font-weight: 600; margin-top: 16px; }
+    .devo-empty { color: var(--muted); font-family: "Fraunces", serif; font-size: 1.2rem; text-align: center; }
+    .hope-sub { font-size: 1.35rem; margin-top: 50px; color: var(--teal); }
+    .nlt-credit { margin-top: 14px; font-size: .8rem; max-width: 760px; margin-left: auto; margin-right: auto; }
+
+    /* Get involved */
+    .involve { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+
+    /* Contact */
+    .contact-box {
+      background: var(--teal); color: var(--white); border-radius: var(--radius);
+      padding: 48px; text-align: center;
+    }
+    .contact-box h2 { color: var(--white); }
+    .contact-box p { color: #d8e8e8; max-width: 600px; margin: 0 auto 24px; }
+    .contact-box .btn { background: var(--gold); color: var(--ink); }
+
+
+    /* Resources */
+    .res-group { margin-top: 40px; }
+    .res-group h3 { font-size: 1.35rem; margin-bottom: 14px; color: var(--teal); }
+    .res-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .res {
+      background: var(--white); border: 1px solid var(--sand); border-radius: var(--radius);
+      padding: 20px 22px; border-left: 4px solid var(--gold);
+    }
+    .res h4 { font-family: "Fraunces", serif; font-size: 1.15rem; margin-bottom: 6px; }
+    .res p { color: var(--muted); font-size: 1rem; margin-bottom: 8px; }
+    .res a { font-weight: 600; color: var(--teal); }
+    .res .meta { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: .98rem; }
+    .res-note { margin-top: 30px; font-size: .95rem; color: var(--muted); }
+    .contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+    .contact-box .btn-outline { background: transparent; color: var(--white); border: 2px solid var(--gold); }
+
+    /* Footer */
+    footer { padding: 40px 0; text-align: center; color: var(--muted); font-size: .95rem; }
+    footer .closing { font-family: "Fraunces", serif; font-size: 1.3rem; color: var(--ink); margin-bottom: 12px; }
+    .crisis { margin-top: 14px; font-size: .95rem; }
+
+    /* Mobile */
+    @media (max-width: 900px) {
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      .involve { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 760px) {
+      section { padding: 60px 0; }
+      .menu-btn { display: block; }
+      .brand { font-size: 1rem; gap: 8px; }
+      .brand img { width: 36px; height: 36px; }
+      .nav ul {
+        display: none; position: absolute; top: 64px; left: 0; right: 0;
+        flex-direction: column; gap: 0; background: var(--cream); border-bottom: 1px solid var(--sand);
+      }
+      .nav ul.open { display: flex; }
+      .nav ul a { display: block; padding: 14px 20px; }
+      .hero-grid, .about-grid { grid-template-columns: 1fr; }
+      .hero-text { padding-bottom: 10px; }
+      .cards, .serve-list, .res-grid { grid-template-columns: 1fr; }
+      .contact-box { padding: 32px 20px; }
+      .devo { padding: 24px 20px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a href="#" class="nav-logo">Anonymous Haven</a>
-    <ul class="nav-links">
-      <li><a href="#platform">Platform</a></li>
-      <li><a href="#credential">MANO</a></li>
-      <li><a href="#founder">Founder</a></li>
-      <li><a href="#contact">Connect</a></li>
-    </ul>
-  </nav>
+  <header>
+    <nav class="wrap nav" aria-label="Main">
+      <a href="#home" class="brand"><img src="assets/logo.svg" alt="" width="42" height="42" /><span class="brand-text">On a Journey, <span>But Not Alone</span></span></a>
+      <button class="menu-btn" aria-label="Open menu" aria-expanded="false" onclick="toggleMenu(this)">&#9776;</button>
+      <ul id="menu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#serve">Who We Serve</a></li>
+        <li><a href="#hope">Daily Hope</a></li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#involved">Get Involved</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <!-- HERO -->
-  <div style="max-width:1100px; margin:0 auto; position:relative;">
-    <div class="hero">
-      <p class="hero-eyebrow">Anonymous Haven · El Paso, TX · Est. 2024</p>
-      <h1 class="hero-title">Recovery<br>Technology<br>for the <em>People.</em></h1>
-      <p class="hero-subtitle">Built from lived experience. Designed for the workers, the warriors, and the ones still finding their way back.</p>
-      <blockquote class="hero-quote">
-        <p>I started this work because I saw myself in the people I serve.<br>I started building because no one else was building it for us.</p>
-        <cite>— Andrés F. Chávez, Founder</cite>
-      </blockquote>
-      <div class="hero-cta">
-        <a href="#platform" class="btn-primary">See the Platform</a>
-        <a href="#contact" class="btn-ghost">Get in Touch</a>
+  <main>
+    <!-- HOME -->
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div class="hero-text">
+          <p class="eyebrow">Austin, Texas</p>
+          <h1>You don't have to walk this road <em>alone.</em></h1>
+          <p>On a Journey, But Not Alone &mdash; we walk beside you with support, compassion, and hope.</p>
+          <div class="btns">
+            <a href="#contact" class="btn btn-primary">Reach Out</a>
+            <a href="#about" class="btn btn-ghost">Our Story</a>
+          </div>
+        </div>
+        <!-- Winding road toward a sunrise -->
+        <svg viewBox="0 0 500 380" role="img" aria-label="A winding road with one set of footprints leading toward a rising sun">
+          <circle cx="330" cy="150" r="70" fill="#d9a441" opacity=".9"/>
+          <circle cx="330" cy="150" r="100" fill="#d9a441" opacity=".18"/>
+          <path d="M0 230 Q120 170 250 210 T500 190 V380 H0Z" fill="#9fbfb4"/>
+          <path d="M0 270 Q150 220 280 260 T500 250 V380 H0Z" fill="#4f8a83"/>
+          <path d="M0 310 Q160 280 300 305 T500 300 V380 H0Z" fill="#1f5f63"/>
+          <path d="M140 380 C200 330 330 320 300 280 C285 260 320 240 335 222 L345 222 C335 245 310 262 322 282 C350 325 260 345 260 380Z" fill="#f2e9da"/>
+          <!-- One set of footprints walking toward the sun (matches the logo) -->
+          <g fill="#a98a5b"><g opacity="0.94" transform="translate(216.0,378.4) rotate(-35.2) scale(0.799,0.799)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.84" transform="translate(228.2,352.1) rotate(-29.6) scale(0.664,-0.664)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.75" transform="translate(252.9,353.8) rotate(-28.3) scale(0.559,0.559)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.67" transform="translate(263.0,335.3) rotate(-29.5) scale(0.474,-0.474)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.60" transform="translate(281.3,335.9) rotate(-32.8) scale(0.406,0.406)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.55" transform="translate(287.1,321.1) rotate(-38.3) scale(0.351,-0.351)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.50" transform="translate(300.9,319.0) rotate(-46.7) scale(0.306,0.306)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.45" transform="translate(301.8,306.6) rotate(-58.0) scale(0.268,-0.268)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.41" transform="translate(311.3,301.0) rotate(-71.7) scale(0.236,0.236)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.38" transform="translate(307.4,291.9) rotate(-85.5) scale(0.210,-0.210)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.35" transform="translate(312.4,284.3) rotate(-100.8) scale(0.188,0.188)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.32" transform="translate(307.3,277.9) rotate(-85.5) scale(0.169,-0.169)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.29" transform="translate(312.7,272.7) rotate(-74.7) scale(0.152,0.152)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.27" transform="translate(310.6,266.2) rotate(-67.3) scale(0.138,-0.138)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.25" transform="translate(316.3,263.2) rotate(-62.5) scale(0.126,0.126)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.23" transform="translate(315.4,257.4) rotate(-59.3) scale(0.116,-0.116)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.21" transform="translate(320.6,255.4) rotate(-57.1) scale(0.106,0.106)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.19" transform="translate(320.5,249.8) rotate(-55.6) scale(0.098,-0.098)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.17" transform="translate(325.5,247.9) rotate(-54.7) scale(0.090,0.090)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.15" transform="translate(325.8,242.6) rotate(-54.3) scale(0.082,-0.082)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.13" transform="translate(330.7,240.5) rotate(-54.3) scale(0.076,0.076)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.11" transform="translate(331.1,235.3) rotate(-54.9) scale(0.070,-0.070)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.09" transform="translate(335.8,233.1) rotate(-55.9) scale(0.066,0.066)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g><g opacity="0.08" transform="translate(336.2,228.0) rotate(-57.5) scale(0.062,-0.062)"><path d="M-13,0.5 C-13,-3.5 -9,-4.6 -6.5,-3.8 C-3,-2.6 0,-1.6 3,-4.2 C6,-6.4 10.5,-5 10.8,-1 C11,2.5 8.5,4.8 4.5,4.8 C0,4.8 -3,4.4 -7,4.6 C-11,4.8 -13,3.5 -13,0.5Z"/><circle cx="14.2" cy="-3.6" r="2.4"/><circle cx="14.9" cy="-0.4" r="1.55"/><circle cx="14.4" cy="2" r="1.35"/><circle cx="13.3" cy="3.9" r="1.15"/><circle cx="11.8" cy="5.5" r="1"/></g></g>
+        </svg>
       </div>
-      <div class="scroll-line"><span>Scroll</span></div>
-    </div>
-  </div>
+    </section>
 
-  <div class="divider"></div>
-
-  <!-- MISSION -->
-  <section id="mission">
-    <p class="section-label reveal">Mission</p>
-    <div class="mission-grid">
-      <div class="mission-text reveal">
-        <h2 class="section-title">The system wasn't built<br>for <em>us.</em></h2>
-        <p>Recovery technology has always been designed for clinicians, administrators, and grant officers. The people actually doing the work — the peer specialists, the outreach workers, the people in recovery themselves — were an afterthought.</p>
-        <p><strong>Anonymous Haven is different.</strong> Every tool in this platform was designed by someone who has sat on both sides of the table. Who knows what a peer specialist needs in the middle of a session. Who knows what it feels like to need help and not know where to turn.</p>
-        <p>This is technology built from the ground up, for the ground level.</p>
-      </div>
-      <div class="mission-stat-block reveal">
-        <div class="stat-item">
-          <div class="stat-number">4</div>
-          <div class="stat-label">Active tools in the ecosystem</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">3+</div>
-          <div class="stat-label">Years in recovery, building this</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">42 CFR</div>
-          <div class="stat-label">Part 2 compliance built in</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">136</div>
-          <div class="stat-label">Commits on Compassionate Log alone</div>
-        </div>
+    <!-- MISSION -->
+    <div class="mission">
+      <div class="wrap">
+        <p>Our mission is to walk alongside people facing difficult seasons by offering advocacy, peer support, spiritual guidance, and practical assistance.</p>
       </div>
     </div>
-  </section>
 
-  <div class="divider"></div>
-
-  <!-- PLATFORM -->
-  <section id="platform">
-    <p class="section-label reveal">The Platform</p>
-    <h2 class="section-title reveal">One ecosystem.<br><em>Four layers.</em></h2>
-    <p class="platform-intro reveal">Anonymous Haven isn't one app. It's a full stack built for every person in the recovery ecosystem — from the individual in recovery to the organization behind them.</p>
-
-    <div class="platform-stack">
-
-      <div class="platform-item reveal">
-        <div class="platform-node">01</div>
-        <div class="platform-content">
-          <div class="platform-role">The Individual · Coming Soon</div>
-          <div class="platform-name">Anonymous Haven App</div>
-          <p class="platform-desc">Daily check-ins, peer support SOS, recovery education, and connection to services — all without requiring identity. The core tool. The front door. Where every journey starts.</p>
-          <div class="platform-tags">
-            <span class="tag">Daily Haven</span>
-            <span class="tag">SOS Button</span>
-            <span class="tag">Peer Access</span>
-            <span class="tag">MVP First — No AI Until Ready</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="platform-item reveal">
-        <div class="platform-node">02</div>
-        <div class="platform-content">
-          <div class="platform-role">MI Training · Active Development</div>
-          <div class="platform-name">Zeke AI</div>
-          <p class="platform-desc">An AI-powered Motivational Interviewing trainer and peer support buddy — built to sharpen the skills of the peer specialist, not manage their caseload. OARS practice, evoking and eliciting techniques, peer support ethics, and policies & procedures. A quiet coach that helps peers make better decisions and show up stronger in every session.</p>
-          <div class="platform-tags">
-            <span class="tag">OARS Training</span>
-            <span class="tag">MI Skills</span>
-            <span class="tag">Peer Ethics</span>
-            <span class="tag">Support Buddy</span>
-          </div>
-          <div class="platform-tags">
-            <span class="tag">MI Assistant</span>
-            <span class="tag">GPRA/BARC</span>
-            <span class="tag">Note Support</span>
-            <span class="tag">HIPAA Aligned</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="platform-item reveal">
-        <div class="platform-node">03</div>
-        <div class="platform-content">
-          <div class="platform-role">Peer Coordination · Active Development</div>
-          <div class="platform-name">L.O.G.</div>
-          <p class="platform-desc">AI-powered peer recovery organization management — SUPRT-C and BARC-10 assessments, recovery plans, participant tracking, and Amazon Nova integration. Built for the Amazon Nova Hackathon 2026.</p>
-          <div class="platform-tags">
-            <span class="tag">SUPRT-C</span>
-            <span class="tag">BARC-10</span>
-            <span class="tag">Amazon Bedrock</span>
-            <span class="tag">42 CFR Part 2</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="platform-item reveal">
-        <div class="platform-node">04</div>
-        <div class="platform-content">
-          <div class="platform-role">Field Operations · Most Complete</div>
-          <div class="platform-name">Compassionate Log</div>
-          <p class="platform-desc">Multi-organization overdose response and outreach tracking — Narcan distribution, incident logging, geographic analytics, team dashboards. Built for detox centers, outreach teams, and harm reduction orgs.</p>
-          <div class="platform-tags">
-            <span class="tag">Multi-Org</span>
-            <span class="tag">Narcan Tracking</span>
-            <span class="tag">HIPAA</span>
-            <span class="tag">Offline-First</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- MANO TOKEN -->
-  <section id="credential" style="padding: 6rem 2rem;">
-    <div class="credential-section reveal">
-      <div class="credential-grid">
-        <div class="credential-text">
-          <p class="section-label">MANO Token · In Development</p>
-          <h2 class="section-title">What if your recovery<br>couldn't be <em>taken away?</em></h2>
-          <p>Right now, when someone completes treatment, gets discharged from probation, or reaches 30 days clean — that proof lives in a file somewhere. A bureaucrat's drawer. A system that can lose it, deny it, or disappear.</p>
-          <p>MANO changes that. A soulbound credential that belongs to the person who earned it. Non-transferable. Tamper-proof. Verified on-chain. No identity exposed.</p>
-          <p class="big-quote">"What if the work you did in recovery could follow you — not as a file in a bureaucrat's drawer, but as something you own. Something nobody can take away."</p>
-        </div>
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="wrap about-grid">
         <div>
-          <div class="token-card reveal">
-            <div class="token-header">
-              <div class="token-symbol">M</div>
-              <div>
-                <div class="token-name">MANO Token</div>
-                <div class="token-subtitle">Mi Alma Nunca Olvidó · Soulbound Credential</div>
-              </div>
+          <p class="eyebrow">My Story</p>
+          <h2>A calling to walk beside others</h2>
+          <p class="pull">"You don't have to do this thing called life alone."</p>
+        </div>
+        <div class="about-body">
+          <p>Life is a journey filled with unexpected turns, difficult seasons, and moments when the next step is hard to see. Along the way, many people quietly carry burdens they believe they must face by themselves. On a Journey, But Not Alone exists to remind them that they don't have to.</p>
+          <p>This ministry was placed on my heart many years ago. I believe it is part of my calling from God: to help people find encouragement, support, and hope as they navigate life. My purpose is to walk alongside others&mdash;not to promise that every challenge will disappear, but to offer a listening ear, compassionate support, and a reminder that even in hard times, they are not forgotten or alone.</p>
+          <p>Faith can bring comfort and strength, especially when life feels uncertain. Through On a Journey, But Not Alone, I hope to create a welcoming space where people can feel seen, supported, and encouraged to keep moving forward. Every person's journey is different, and no one should have to pretend they have everything figured out.</p>
+          <p>The message at the heart of this ministry is simple: You don't have to do this thing called life alone. With God's guidance and the care of others, it is possible to find strength for today and hope for the road ahead.</p>
+          <p class="signature">&mdash; Rodney Davis, Founder</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="alt">
+      <div class="wrap">
+        <p class="eyebrow">How We Help</p>
+        <h2>Services</h2>
+        <p class="lead">Support shaped around each person's needs and choices.</p>
+        <div class="cards">
+          <div class="card">
+            <div class="icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1f5f63" stroke-width="2" stroke-linecap="round"><path d="M12 3v18M5 8l7-5 7 5M4 14l3-6 3 6a3 3 0 0 1-6 0zM14 14l3-6 3 6a3 3 0 0 1-6 0z"/></svg>
             </div>
-            <div class="token-milestone">
-              <span class="milestone-label">30 Days Clean</span>
-              <span class="milestone-reward">Employment Voucher</span>
+            <h3>Advocacy</h3>
+            <p>Help navigating systems, finding resources, and making sure your voice is heard.</p>
+          </div>
+          <div class="card">
+            <div class="icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1f5f63" stroke-width="2" stroke-linecap="round"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M2 20c0-3 3-5 6-5s6 2 6 5M14 15c3 0 8 1 8 5"/></svg>
             </div>
-            <div class="token-milestone">
-              <span class="milestone-label">90 Days Clean</span>
-              <span class="milestone-reward">Housing Access Rights</span>
+            <h3>Peer Support</h3>
+            <p>Someone who listens without judgment and walks with you through hard seasons.</p>
+          </div>
+          <div class="card">
+            <div class="icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1f5f63" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M6 8h12"/></svg>
             </div>
-            <div class="token-milestone">
-              <span class="milestone-label">Program Completion</span>
-              <span class="milestone-reward">Education Scholarship</span>
+            <h3>Spiritual Guidance</h3>
+            <p>Prayer, encouragement, and faith-based support for those who welcome it.</p>
+          </div>
+          <div class="card">
+            <div class="icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1f5f63" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-6 9 6v11H3z"/><path d="M9 20v-6h6v6"/></svg>
             </div>
-            <div class="token-milestone">
-              <span class="milestone-label">2 Yrs + Probation Discharge</span>
-              <span class="milestone-reward">University Scholarship</span>
-            </div>
-            <div class="token-milestone">
-              <span class="milestone-label">Peer Support Certification</span>
-              <span class="milestone-reward">Platform Access + Recognition</span>
-            </div>
-            <div class="token-note">
-              <p>⬡ Soulbound — cannot be sold or transferred<br>⬡ Zero-knowledge proof — verifies without exposing identity<br>⬡ Polygon ID infrastructure · In development</p>
-            </div>
+            <h3>Essential Items</h3>
+            <p>Food, clothing and shoes, children's items, and household goods for families in need.</p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <div class="divider"></div>
-
-  <!-- WHO IT'S FOR -->
-  <section id="who">
-    <p class="section-label reveal">Designed For</p>
-    <h2 class="section-title reveal">Everyone the system<br>was built <em>around,</em> not for.</h2>
-    <div class="who-grid">
-      <div class="who-item reveal">
-        <div class="who-icon">01 · Individual</div>
-        <div class="who-title">People in Recovery</div>
-        <p class="who-desc">Daily check-ins, crisis support, education tools, and a credential that records your journey — privately, securely, and on your terms.</p>
-      </div>
-      <div class="who-item reveal">
-        <div class="who-icon">02 · Peer Worker</div>
-        <div class="who-title">Peer Specialists & Coaches</div>
-        <p class="who-desc">Real-time MI coaching, GPRA/BARC tracking, and note support — so you can stay present with the person in front of you instead of drowning in admin.</p>
-      </div>
-      <div class="who-item reveal">
-        <div class="who-icon">03 · Organization</div>
-        <div class="who-title">Recovery Orgs & Detox Centers</div>
-        <p class="who-desc">Outreach tracking, overdose response logging, multi-org data isolation, grant compliance dashboards — the operational infrastructure recovery orgs need.</p>
-      </div>
-      <div class="who-item reveal">
-        <div class="who-icon">04 · Field</div>
-        <div class="who-title">Outreach & Harm Reduction Teams</div>
-        <p class="who-desc">Narcan distribution tracking, geographic analytics, team dashboards — built for the people working the streets, the shelters, and the drop-in centers.</p>
-      </div>
-      <div class="who-item reveal">
-        <div class="who-icon">05 · Future</div>
-        <div class="who-title">Sober Homes & Treatment Programs</div>
-        <p class="who-desc">The platform is built to plug into sober living homes, MAT programs, faith-based recovery groups — anywhere peer support happens.</p>
-      </div>
-      <div class="who-item reveal">
-        <div class="who-icon">06 · System</div>
-        <div class="who-title">Justice-Involved Individuals</div>
-        <p class="who-desc">MANO credentials built specifically for reentry — verifiable proof of recovery milestones that travel with the person across probation, housing, employment, and education.</p>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- FOUNDER -->
-  <section id="founder" style="padding: 6rem 2rem; max-width: 1100px; margin: 0 auto;">
-    <p class="section-label reveal">The Builder</p>
-    <div class="founder-section">
-      <div class="founder-card reveal">
-        <div class="founder-name">Andrés F. Chávez</div>
-        <div class="founder-role">Founder · Anonymous Haven</div>
-        <div class="founder-details">
-          <div class="founder-detail">Peer Lead, Opioid Drop-In Center<br>Recovery Alliance El Paso</div>
-          <div class="founder-detail">Member, Technology Committee<br>Paseo del Norte ROSC</div>
-          <div class="founder-detail">3+ Years in Recovery</div>
-          <div class="founder-detail">Self-Taught Developer<br>React Native · TypeScript · Supabase · AWS</div>
-          <div class="founder-detail">El Paso, TX</div>
+    <!-- WHO WE SERVE -->
+    <section id="serve">
+      <div class="wrap">
+        <p class="eyebrow">Who We Serve</p>
+        <h2>Anyone in a difficult season</h2>
+        <ul class="serve-list">
+          <li>Individuals and families facing hardship</li>
+          <li>Parents and caregivers</li>
+          <li>People seeking guidance or resources</li>
+          <li>Anyone going through a difficult season of life</li>
+        </ul>
+        <p class="eyebrow" style="margin-top:50px">Our Values</p>
+        <div class="values">
+          <span>Dignity, kindness &amp; respect</span>
+          <span>Listening without judgment</span>
+          <span>Your needs, your choices</span>
+          <span>Protecting your privacy</span>
+          <span>Hope, connection &amp; a way forward</span>
         </div>
       </div>
-      <div class="founder-story reveal">
-        <p>A year and a half ago, <strong>Andrés Chávez was computer illiterate.</strong> He learned to use AI just to help him type. Today he's built four production-grade recovery technology tools — HIPAA-compliant, 42 CFR Part 2-compliant, with multi-organization architecture, clinical assessment tools, and a blockchain credentialing system in development.</p>
-        <div class="pull-quote">"I used to be called a problem.<br>Now I build solutions."</div>
-        <p>He works as a Peer Lead at Recovery Alliance El Paso's opioid drop-in center during the day. He codes at night. He co-facilitates MAT and Celebrate Recovery meetings, hosts family support groups using a CRAFT-based curriculum, and shows up every weekend at a detox facility — because he sees himself in the people he serves.</p>
-        <p>Anonymous Haven isn't a startup built in a garage by someone who read about the opioid crisis. It's built from inside it. That's the difference.</p>
+    </section>
+
+    <!-- DAILY HOPE -->
+    <section id="hope" class="alt">
+      <div class="wrap">
+        <p class="eyebrow">Daily Hope</p>
+        <h2>A word of encouragement for today</h2>
+        <p class="lead">A daily devotional and short videos to help you find strength for today and hope for the road ahead.</p>
+
+        <!-- DAILY DEVOTIONAL: filled in automatically from Rodney's Google Sheet (see DEVO_SHEET_CSV in the script at the bottom) -->
+        <article class="devo" id="devo" aria-live="polite">
+          <p class="devo-empty">Today's devotional is on its way. Check back soon.</p>
+        </article>
+
+        <h3 class="hope-sub">Daily Hope videos</h3>
+        <div class="video">
+          <!--
+            TO TURN ON DAILY HOPE:
+            1. Get Rodney's YouTube channel ID (starts with "UC...").
+            2. Change the "UC" at the start to "UU" &mdash; that's his uploads playlist.
+            3. Delete the placeholder div below and uncomment the iframe, pasting the UU... ID after list=
+            The newest video will show automatically every time he uploads.
+          -->
+          <!-- <iframe src="https://www.youtube.com/embed/videoseries?list=UUxxxxxxxxxxxxxxxxxxxxxx" title="Daily Hope videos" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe> -->
+          <div class="video-placeholder">Daily Hope videos are coming soon.</div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <div class="divider"></div>
 
-  <!-- CONTACT -->
-  <div class="contact-section" id="contact">
-    <p class="section-label reveal">Let's Build</p>
-    <h2 class="contact-title reveal">Ready to collaborate?</h2>
-    <p class="contact-sub reveal">Investors, recovery organizations, technologists, and fellow builders — the door is open.</p>
-    <div class="contact-links reveal">
-      <a href="https://github.com/AC1706-67" class="btn-primary" target="_blank">View GitHub</a>
-      <a href="https://twitter.com/AnonymousHavenX" class="btn-ghost" target="_blank">X / Twitter</a>
-      <a href="https://www.linkedin.com/in/andres-chavez-46a942320" class="btn-ghost" target="_blank">LinkedIn</a>
-      <a href="https://giveth.io/project/recovery-haven-app" class="btn-ghost" target="_blank">Support on Giveth</a>
-    </div>
-    <p style="font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.15em; color:var(--muted); text-transform:uppercase;">anonymoushaven.ai · El Paso, TX</p>
-  </div>
+    <!-- RESOURCES -->
+    <section id="resources">
+      <div class="wrap">
+        <p class="eyebrow">Resources</p>
+        <h2>Places that can help in Austin</h2>
+        <p class="lead">Places I personally recommend for the road ahead. Reach out if you need help connecting with any of them.</p>
 
-  <!-- FOOTER -->
+        <div class="res-group">
+          <h3>Find a church home</h3>
+          <p>It is so important to find a community and get in it. If you don't have a church home yet, these Austin churches have great pastors who help people walk with God, break down barriers, and be a bridge for God.</p>
+          <div class="res-grid" style="margin-top:16px">
+            <!-- TODO: add each church's address, service times, and website once Rodney confirms them -->
+            <div class="res"><h4>Dreamers Church</h4><p>Austin, TX</p></div>
+            <div class="res"><h4>City Reach Church</h4><p>Austin, TX</p></div>
+            <div class="res"><h4>OneChapel Austin</h4><p>Austin, TX</p><div class="meta"><a href="https://www.onechapel.com" target="_blank" rel="noopener">onechapel.com</a></div></div>
+          </div>
+        </div>
+
+        <div class="res-group">
+          <h3>Help and support</h3>
+          <div class="res-grid">
+            <div class="res">
+              <h4>Mental health: 211 or Integral Care</h4>
+              <p>If you are facing mental health struggles, 211 is a great place to start. Integral Care has locations around Austin and a 24/7 helpline.</p>
+              <div class="meta"><a href="tel:211">Call 211</a><a href="tel:5124724357">Integral Care: 512-472-HELP (4357)</a></div>
+            </div>
+            <div class="res">
+              <h4>Medical care: Vivent Health Austin</h4>
+              <p>A nationally recognized medical and social service center specializing in integrated HIV care, prevention, and treatment.</p>
+              <div class="meta"><a href="tel:5124582437">512-458-2437</a><span>104 E Highland Mall Blvd, Ste 100, Austin, TX 78752</span></div>
+            </div>
+            <div class="res">
+              <h4>Housing: Second Chance Locator</h4>
+              <p>Looking for a home with felonies, misdemeanors, bad credit, or a broken lease? They help people get a roof over their head and a place to call home.</p>
+              <div class="meta"><a href="tel:5128654672">512-865-4672</a></div>
+            </div>
+            <div class="res">
+              <h4>Legal help: Texas RioGrande Legal Aid</h4>
+              <p>Facing a legal problem? Call for legal advice or for someone to fight for you.</p>
+              <div class="meta"><a href="tel:5123346526">512-334-6526</a></div>
+            </div>
+            <div class="res">
+              <h4>Free computers: Austin Public Library</h4>
+              <p>If you need to use a computer for anything, you can always go to the public library.</p>
+              <div class="meta"><a href="https://library.austintexas.gov" target="_blank" rel="noopener">library.austintexas.gov</a></div>
+            </div>
+            <div class="res">
+              <h4>Encouragement on the go: K-LOVE Radio</h4>
+              <p>K-LOVE helped me through many challenges in my life. They even have an app so you can take them everywhere you go.</p>
+              <div class="meta"><a href="https://www.klove.com" target="_blank" rel="noopener">klove.com</a></div>
+            </div>
+          </div>
+        </div>
+        <p class="res-note">Phone numbers and hours can change. Call ahead to confirm before you go.</p>
+      </div>
+    </section>
+
+    <!-- GET INVOLVED -->
+    <section id="involved">
+      <div class="wrap">
+        <p class="eyebrow">Get Involved</p>
+        <h2>Walk with us</h2>
+        <p class="lead">Every act of kindness helps someone take the next step.</p>
+        <div class="involve">
+          <div class="card">
+            <h3>Donate Items</h3>
+            <p>Food, clothing and shoes, children's items, and household goods go directly to people who need them.</p>
+          </div>
+          <div class="card">
+            <h3>Volunteer</h3>
+            <p>Give your time to help sort donations, support events, or walk alongside someone in need.</p>
+          </div>
+          <div class="card">
+            <h3>Community Partners</h3>
+            <p>Churches, food programs, clothing providers, and nonprofits &mdash; let's work together to serve our neighbors.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="alt">
+      <div class="wrap">
+        <div class="contact-box">
+          <h2>Reach out &mdash; you're not alone</h2>
+          <p>Whether you need support, want to help, or just need someone to listen, we'd love to hear from you.</p>
+          <div class="contact-links">
+            <a href="tel:7372852293" class="btn">Call or text 737-285-2293</a>
+            <a href="mailto:onajourneybutnotalone@gmail.com" class="btn btn-outline">onajourneybutnotalone@gmail.com</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
   <footer>
-    <div class="footer-brand">© 2025 Anonymous Haven · All Rights Reserved</div>
-    <div class="footer-verse">"For I know the plans I have for you..." — Jeremiah 29:11</div>
+    <div class="wrap">
+      <p class="closing">No one should have to face life's challenges alone.</p>
+      <p>&copy; <span id="year"></span> On a Journey, But Not Alone &middot; Austin, Texas</p>
+      <p class="crisis">If you are in crisis, call or text <a href="tel:988">988</a> (Suicide &amp; Crisis Lifeline), available 24/7.</p>
+      <p class="nlt-credit">Scripture quotations are taken from the Holy Bible, New Living Translation, copyright &copy;1996, 2004, 2015 by Tyndale House Foundation. Used by permission of Tyndale House Publishers, Carol Stream, Illinois 60188. All rights reserved.</p>
+    </div>
   </footer>
 
   <script>
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.classList.add('visible');
-          }, 100);
-          observer.unobserve(entry.target);
+    function toggleMenu(btn) {
+      const menu = document.getElementById('menu');
+      const open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+    }
+    document.querySelectorAll('#menu a').forEach(a =>
+      a.addEventListener('click', () => {
+        document.getElementById('menu').classList.remove('open');
+        document.querySelector('.menu-btn').setAttribute('aria-expanded', 'false');
+      })
+    );
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* ---------- DAILY DEVOTIONAL ----------
+       Rodney types devotionals into a Google Sheet with these columns (row 1 = headers):
+         Date | Title | Scripture | Verse | Devotional
+       Example:  11/16/2026 | Strength for Today | Isaiah 41:10 | (NLT verse text) | (his message)
+       To connect it: in the Sheet, File > Share > Publish to web > pick the sheet tab > "Comma-separated values (.csv)" > Publish.
+       Paste that link between the quotes below. Changes show on the site within about 5 minutes.
+       The site shows today's entry (Austin time). If today is blank, it shows the most recent past entry. */
+    const DEVO_SHEET_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ8q3MRF5OOP65S0P0oSZiqtKAQFRYBzFO2HGG6E_bVSHLaPcikO0XvVSRRnHOu1JPdbHpOAp0t-qA5/pub?output=csv';
+
+    (function loadDevotional() {
+      const box = document.getElementById('devo');
+      if (!DEVO_SHEET_CSV) return;
+
+      function parseCSV(text) {
+        const rows = []; let row = [], field = '', q = false;
+        for (let i = 0; i < text.length; i++) {
+          const c = text[i];
+          if (q) {
+            if (c === '"' && text[i + 1] === '"') { field += '"'; i++; }
+            else if (c === '"') q = false;
+            else field += c;
+          } else if (c === '"') q = true;
+          else if (c === ',') { row.push(field); field = ''; }
+          else if (c === '\n' || c === '\r') {
+            if (c === '\r' && text[i + 1] === '\n') i++;
+            row.push(field); rows.push(row); row = []; field = '';
+          } else field += c;
         }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        if (field || row.length) { row.push(field); rows.push(row); }
+        return rows;
+      }
+      function toKey(s) { // returns YYYYMMDD number, accepts 11/16/2026 or 2026-11-16
+        s = (s || '').trim(); let m;
+        if ((m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/))) return +m[3] * 10000 + +m[1] * 100 + +m[2];
+        if ((m = s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/))) return +m[1] * 10000 + +m[2] * 100 + +m[3];
+        return null;
+      }
+      function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text) e.textContent = text; return e; }
 
-    reveals.forEach(el => observer.observe(el));
+      const p = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Chicago', year: 'numeric', month: 'numeric', day: 'numeric' })
+        .formatToParts(new Date()).reduce((o, x) => (o[x.type] = x.value, o), {});
+      const todayKey = +p.year * 10000 + +p.month * 100 + +p.day;
+
+      fetch(DEVO_SHEET_CSV, { cache: 'no-store' })
+        .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
+        .then(text => {
+          const rows = parseCSV(text).slice(1)
+            .map(r => ({ key: toKey(r[0]), title: (r[1] || '').trim(), ref: (r[2] || '').trim(), verse: (r[3] || '').trim(), body: (r[4] || '').trim() }))
+            .filter(r => r.key && r.key <= todayKey && (r.verse || r.body))
+            .sort((a, b) => b.key - a.key);
+          const d = rows[0];
+          if (!d) return;
+
+          const date = new Date(Math.floor(d.key / 10000), Math.floor(d.key / 100) % 100 - 1, d.key % 100);
+          box.innerHTML = '';
+          box.appendChild(el('p', 'devo-date', date.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })));
+          box.appendChild(el('h3', null, d.title || 'Today’s Devotional'));
+          if (d.verse) {
+            const bq = el('blockquote', null, d.verse);
+            if (d.ref) {
+              const cite = el('cite'); const a = el('a', null, d.ref + ' (NLT)');
+              a.href = 'https://www.biblegateway.com/passage/?search=' + encodeURIComponent(d.ref) + '&version=NLT';
+              a.target = '_blank'; a.rel = 'noopener';
+              cite.append('— ', a); bq.appendChild(cite);
+            }
+            box.appendChild(bq);
+          }
+          if (d.body) box.appendChild(el('p', 'devo-body', d.body));
+          box.appendChild(el('p', 'devo-sign', '— Rodney'));
+        })
+        .catch(() => { /* keep the "on its way" message */ });
+    })();
   </script>
-
 </body>
 </html>
